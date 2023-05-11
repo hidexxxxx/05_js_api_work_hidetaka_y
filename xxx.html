@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ルート検索</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="directions-panel">
+        <div id="distance"></div>
+        <div id="duration"></div>
+        <div id="total-distance"></div>
+        <div id="total-duration"></div>
+    </div>
+
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                //表示される地図の中心座標
+                center: { lat: 35.681236, lng: 139.767125 },
+            });
+
+            //ルート検索のリクエストの送信、検索結果の受け取り
+            const directionsService = new google.maps.DirectionsService();
+            //地図上にルートを表示させる
+            const directionsRenderer = new google.maps.DirectionsRenderer({
+                map,
+                //panelにdocument.getElementById("directions-panel")を指定
+                panel: document.getElementById("directions-panel")
+            });
+
+            //スタート地点
+            const start = "東京駅";
+            //ゴール地点
+            const end = "新宿駅";
+
+            //中間地点A //trueにすることで経由地点と認識する
+            const waypoint1 = {
+                location: "渋谷駅",
+                stopover: true,
+            };
+
+            //中間地点B
+            const waypoint2 = {
+                location: "池袋駅",
+                stopover: true,
+            };
+
+            const request = {
+                origin: start,
+                destination: end,
+                waypoints: [waypoint1, waypoint2],
+                //trueでルート最適化
+                optimizeWaypoints: true,
+                //運転した時の地図。徒歩ならWALKING、自転車ならBICYCLING
+                travelMode: google.maps.TravelMode.DRIVING,
+            };
+
+            //ルート情報の取得
+            directionsService.route(request, function (result, status) {
+                if (status == "OK") {
+                    //地図上にルートを出す
+                    directionsRenderer.setDirections(result);
+                    const route = result.routes[0];
+                    // 合計距離の計算。reduce()は各経路の距離を合計、accは前の関数呼び戻しの戻り値(前の結果の引き継ぎ)、
+                    // curは現在処理されている要素。acc + cur.distance.value は現在までの合計距離。1000で割ってkmに。
+                    // 0は初期値
+                    const distance = route.legs.reduce((acc, cur) => acc + cur.distance.value, 0) / 1000;
+                    const duration = route.legs.reduce((acc, cur) => acc + cur.duration.value, 0) / 60;
+                    document.getElementById("distance").textContent = `合計移動距離: ${distance.toFixed(1)} km`;
+                    document.getElementById("duration").textContent = `合計移動時間: ${duration.toFixed(1)} 分`;
+                }
+            });
+        }
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5PXN7uj16k07lsZdWP92zELEgnypdWww&callback=initMap&libraries=places"
+        async></script>
+</body>
+
+</html>

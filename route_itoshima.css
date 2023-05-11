@@ -1,0 +1,155 @@
+#map {
+    height: 100%;
+}
+
+html,
+body {
+    font-size: 18px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: Georgia;
+    color: rgb(45, 45, 45);
+}
+
+a:link,
+a:visited {
+    color: rgb(45, 45, 45);
+    text-decoration: none;
+}
+
+#header {
+    background-color: rgb(255, 210, 160);
+    padding: 20px 0 0 0;
+    margin: 0 auto 20px auto;
+    border-bottom: solid 1px #909090;
+}
+
+nav {
+    font-size: 20px;
+    font: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+nav .menu,
+nav .login {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+
+nav .menu li,
+nav .login li {
+    margin-right: 40px;
+}
+
+.menu-area,
+.menu-chat,
+.menu-mypage,
+.menu-community,
+.menu-login,
+.login-contact {
+    transition-duration: 0.5s;
+}
+
+.menu-area:hover,
+.menu-chat:hover,
+.menu-mypage:hover,
+.menu-community:hover,
+.menu-login:hover,
+.login-contact:hover {
+    background-color: rgb(252, 233, 210);
+}
+
+.brand-logo {
+    font-size: 5vh;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 80%;
+    height: auto;
+    transition-duration: 0.5s;
+}
+
+.brand-logo:hover {
+    transform: scale(1.1, 1.1);
+    cursor: pointer;
+}
+
+
+
+#distance,
+#duration {
+    font-size: 2.5vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+
+
+
+
+
+
+footer {
+    position: relative;
+    width: 100%;
+    background-color: rgb(255, 210, 160);
+    border-top: solid 1px #909090;
+}
+
+.wrapper-footer {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+nav {
+    width: 100%;
+}
+
+nav .menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+nav .menu-footer li {
+    font-size: 15px;
+    margin-right: 16px;
+}
+
+.copy-rights {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(160, 112, 0);
+    width: 100%;
+    bottom: 20px;
+}
+
+.footer-first,
+.footer-question,
+.footer-rule,
+.footer-treat,
+.footer-policy,
+.footer-contact,
+.footer-CoInfo {
+    transition-duration: 0.5s;
+}
+
+.footer-first:hover,
+.footer-question:hover,
+.footer-rule:hover,
+.footer-treat:hover,
+.footer-policy:hover,
+.footer-contact:hover,
+.footer-CoInfo:hover {
+    background-color: rgb(252, 233, 210);
+}

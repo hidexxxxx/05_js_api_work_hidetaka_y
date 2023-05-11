@@ -1,0 +1,205 @@
+#map {
+    height: 100%;
+}
+
+html,
+body {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    position: relative;
+    font-family: Georgia;
+    color: rgb(45, 45, 45);
+}
+
+a:link,
+a:visited {
+    color: rgb(45, 45, 45);
+    text-decoration: none;
+}
+
+#header {
+    background-color: rgb(255, 210, 160);
+    padding: 20px 0 0 0;
+    margin: 0 auto 20px auto;
+    border-bottom: solid 1px #909090;
+}
+
+nav {
+    font-size: 20px;
+    font: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+nav .menu,
+nav .login {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+
+nav .menu li,
+nav .login li {
+    margin-right: 40px;
+}
+
+.menu-area,
+.menu-chat,
+.menu-mypage,
+.menu-community,
+.menu-login,
+.login-contact {
+    transition-duration: 0.5s;
+}
+
+.menu-area:hover,
+.menu-chat:hover,
+.menu-mypage:hover,
+.menu-community:hover,
+.menu-login:hover,
+.login-contact:hover {
+    background-color: rgb(252, 233, 210);
+}
+
+.brand-logo {
+    font-size: 5vh;
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 80%;
+    height: auto;
+    transition-duration: 0.5s;
+}
+
+.brand-logo:hover {
+    transform: scale(1.1, 1.1);
+    cursor: pointer;
+}
+
+#start-Input,
+#wayPointB-Input,
+#wayPointC-Input,
+#goal-Input {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 95%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#start,
+#wayPointB,
+#wayPointC,
+#goal {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 50vh;
+    /* 表示するスクロールバーの高さを指定 */
+    overflow-y: auto;
+    /* 縦方向のスクロールバーを表示 */
+}
+
+ul#start li,
+ul#wayPointB li,
+ul#wayPointC li,
+ul#goal li {
+    padding: 0;
+}
+
+#start li a,
+#wayPointB li a,
+#wayPointC li a,
+#goal li a {
+    border: 1px solid #ddd;
+    margin-top: -1px;
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+}
+
+#start li a:hover:not(.header),
+#wayPointB li a:hover:not(.header),
+#wayPointC li a:hover:not(.header),
+#goal li a:hover:not(.header) {
+    background-color: #c8e4ff;
+}
+
+
+
+
+
+
+
+
+
+
+
+footer {
+    position: relative;
+    width: 100%;
+    background-color: rgb(255, 210, 160);
+    border-top: solid 1px #909090;
+}
+
+.wrapper-footer {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+nav {
+    width: 100%;
+}
+
+nav .menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+nav .menu-footer li {
+    font-size: 15px;
+    margin-right: 16px;
+}
+
+.copy-rights {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(160, 112, 0);
+    width: 100%;
+    bottom: 20px;
+}
+
+.footer-first,
+.footer-question,
+.footer-rule,
+.footer-treat,
+.footer-policy,
+.footer-contact,
+.footer-CoInfo {
+    transition-duration: 0.5s;
+}
+
+.footer-first:hover,
+.footer-question:hover,
+.footer-rule:hover,
+.footer-treat:hover,
+.footer-policy:hover,
+.footer-contact:hover,
+.footer-CoInfo:hover {
+    background-color: rgb(252, 233, 210);
+}

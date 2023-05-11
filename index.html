@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ルート検索</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+
+    <header id="header">
+        <p class="brand-logo" alt="Coname">Itoshima Coast Highway</p>
+        <nav class="wrapper">
+            <ul class="menu">
+                <li class="menu-area"><a onclick="location.href='search-pulldown.html';">Spot</a></li>
+                <li class="menu-mypage"><a onclick="location.href='mypage.html';">My Page</a></li>
+                <li class="menu-community"><a onclick="location.href='community.html';">Community</a></li>
+            </ul>
+            <ul class="login">
+                <li class="menu-login"><a onclick="location.href='index.html';">Login</a></li>
+                <li class="login-contact"><a onclick="location.href='contact.html';">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+</head>
+
+<body>
+    <main>
+        <label>Start</label>
+        <input type="text" id="start-Input" placeholder="スタート地点を入力してください。">
+        <ul id="start">
+            <li><a href="#">姪浜駅</a></li>
+            <li><a href="#">九大学研都市駅</a></li>
+            <li><a href="#">筑前前原駅</a></li>
+            <li><a href="#">筑前深江駅</a></li>
+        </ul>
+        <br>
+        <label>経由地点①</label>
+        <input type="text" id="wayPointB-Input" placeholder="経由地点を入力してください。">
+        <ul id="wayPointB">
+            <li><a href="#">櫻井二見ヶ浦夫婦岩</a></li>
+            <li><a href="#">糸島トトロの森</a></li>
+            <li><a href="#">灘山展望台</a></li>
+            <li><a href="#">芥屋海水浴場</a></li>
+            <li><a href="#">白糸の滝</a></li>
+            <li><a href="#">雷山 千如寺 大悲王院</a></li>
+        </ul>
+        <br>
+        <label>経由地点②</label>
+        <input type="text" id="wayPointC-Input" placeholder="経由地点を入力してください。">
+        <ul id="wayPointC">
+            <li><a href="#">櫻井二見ヶ浦夫婦岩</a></li>
+            <li><a href="#">糸島トトロの森</a></li>
+            <li><a href="#">灘山展望台</a></li>
+            <li><a href="#">芥屋海水浴場</a></li>
+            <li><a href="#">白糸の滝</a></li>
+            <li><a href="#">雷山 千如寺 大悲王院</a></li>
+        </ul>
+        <br>
+        <label>Goal</label>
+        <input type="text" id="goal-Input" placeholder="ゴール地点を入力してください。">
+        <ul id="goal">
+            <li><a href="#">姪浜駅</a></li>
+            <li><a href="#">九大学研都市駅</a></li>
+            <li><a href="#">筑前前原駅</a></li>
+            <li><a href="#">筑前深江駅</a></li>
+        </ul>
+
+
+        <div class="send">
+            <button id="send" onclick="location.href='route_itoshima.html';">ルートを表示</button>
+        </div>
+
+
+        <!-- <button type="button" id="output">button</button> -->
+
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+
+    <script>
+        // スタート地点リストのul要素を取得
+        const startUl = document.getElementById("start");
+        const wayPointBUl = document.getElementById("wayPointB");
+        const wayPointCUl = document.getElementById("wayPointC");
+        const goalUl = document.getElementById("goal");
+
+        // li要素を取得 startULはDOM(JSからHTMLにアクセスするために必要)
+        const startLi = startUl.getElementsByTagName("li");
+        const wayPointBLi = wayPointBUl.getElementsByTagName("li");
+        const wayPointCLi = wayPointCUl.getElementsByTagName("li");
+        const goalLi = goalUl.getElementsByTagName("li");
+
+        // li要素の数だけループ
+        for (let i = 0; i < startLi.length; i++) {
+            // a要素を取得
+            const a = startLi[i].getElementsByTagName("a")[0];
+
+            // a要素にクリックイベントを追加
+            a.addEventListener("click", function () {
+                // a要素のテキストを取得して、テキストボックスの値に設定
+                document.getElementById("start-Input").value = a.textContent;
+            });
+        };
+
+        for (let i = 0; i < wayPointBLi.length; i++) {
+            // a要素を取得
+            const a = wayPointBLi[i].getElementsByTagName("a")[0];
+
+            // a要素にクリックイベントを追加
+            a.addEventListener("click", function () {
+                // a要素のテキストを取得して、テキストボックスの値に設定
+                document.getElementById("wayPointB-Input").value = a.textContent;
+            });
+        };
+
+        for (let i = 0; i < wayPointCLi.length; i++) {
+            // a要素を取得
+            const a = wayPointCLi[i].getElementsByTagName("a")[0];
+
+            // a要素にクリックイベントを追加
+            a.addEventListener("click", function () {
+                // a要素のテキストを取得して、テキストボックスの値に設定
+                document.getElementById("wayPointC-Input").value = a.textContent;
+            });
+        };
+
+        for (let i = 0; i < goalLi.length; i++) {
+            // a要素を取得
+            const a = goalLi[i].getElementsByTagName("a")[0];
+
+            // a要素にクリックイベントを追加
+            a.addEventListener("click", function () {
+                // a要素のテキストを取得して、テキストボックスの値に設定
+                document.getElementById("goal-Input").value = a.textContent;
+            });
+        }
+
+    </script>
+
+    <script type="module">
+
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+
+        // 🔽 追加
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            onSnapshot,
+            //orderbyでデータのソートとorderbyで
+            query,
+            orderBy,
+        } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "",
+            authDomain: "jsapi-5152e.firebaseapp.com",
+            projectId: "jsapi-5152e",
+            storageBucket: "jsapi-5152e.appspot.com",
+            messagingSenderId: "374799652264",
+            appId: "1:374799652264:web:b8c78a5a60889d0c7e799d"
+        };
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // 🔽 追加
+        const db = getFirestore(app);
+
+        $("#send").on("click", async function () {
+            // 送信時に必要な処理
+            const postData = {
+                start: $("#start-Input").val(),
+                waypointB: $("#wayPointB-Input").val(),
+                waypointC: $("#wayPointC-Input").val(),
+                goal: $("#goal-Input").val(),
+
+            };
+
+            // console.log("#start");
+
+            try {
+                // 第一引数には追加するコレクション、第二引数には追加するデータが渡される
+                await addDoc(collection(db, "info"), postData);
+                // データがFirestoreに追加された後にページを遷移させる
+                location.href = 'route_itoshima.html';
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        })
+
+        const q = query(collection(db, "chat"));
+
+        onSnapshot(q, (querySnapshot) => {
+            console.log(querySnapshot.docs);
+            //複雑な形のため必要なデータのみ抽出した「オブジェクト形式の配列」に変換
+            const documents = [];
+            querySnapshot.docs.forEach(function (doc) {
+                const document = {
+                    id: doc.id,
+                    data: doc.data(),
+                };
+                documents.push(document);
+            });
+
+            const htmlElements = [];
+            documents.forEach(function (document) {
+                htmlElements.push(`
+                        <li id="${document.id}">
+                        <p>${document.data.goal}</p>
+                        <p>${document.data.start}</p>
+                        <p>${document.data.waypointB}</p>
+                        <p>${document.data.waypointC}</p>
+                        </li>
+                     `);
+            });
+
+            $("#output").html(htmlElements);
+
+        });
+
+
+
+
+    </script>
+
+
+
+</body>
+
+<footer>
+    <nav class="wrapper-footer">
+        <ul class="menu-footer">
+            <li class="footer-first"><a href="#">初めての方へ</a></li>
+            <li class="footer-question"><a href="#">よくある質問</a></li>
+            <li class="footer-rule"><a href="#">利用規約</a></li>
+            <li class="footer-treat"><a href="#">特定商品取引法</a></li>
+            <li class="footer-policy"><a href="#">プライバシーポリシー</a></li>
+            <li class="footer-contact"><a href="#">お問い合わせ</a></li>
+            <li class="footer-CoInfo"><a href="#">会社概要</a></li>
+        </ul>
+    </nav>
+    <h5 class="copy-rights">©️2023 Cloud Garage Co,.Ltd. All Rights Reserved</h5>
+</footer>
+
+</html>
